@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import pymysql
+import os
 
 pymysql.install_as_MySQLdb()
 
@@ -78,12 +79,12 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # mysql
 # DATABASES = {
@@ -109,16 +110,16 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'todolist',
-        'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'database-2.cdix9bdxdtry.ap-northeast-1.rds.amazonaws.com',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'todolist',
+#         'USER': 'root',
+#         'PASSWORD': '12345678',
+#         'HOST': 'database-2.cdix9bdxdtry.ap-northeast-1.rds.amazonaws.com',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -163,3 +164,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = '/user/login'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    # BASE_DIR / 'static',
+]

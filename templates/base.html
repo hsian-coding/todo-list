@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
@@ -6,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TodoList</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <a href="{% url 'todo' %}">首頁</a>
+    <!-- <img src="{% static 'images/brand.png' %}" alt="" width="30px"> -->
+    <a href="{% url 'todo' %}"><img src="{% static 'images/brand.png' %}" alt="" width="30px"></a>
     {% if user.is_authenticated %}
     Login:
     <a href="{% url 'profile' %}">{{user.username}}</a>
