@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Profile</h1>
+
+<h2>{{user.username}}</h2>
+<ul>
+    <li>信箱: {{user.email}}</li>
+    <li>加入時間: {{user.date_joined}}</li>
+    <li>最後登入時間: {{user.last_login}}</li>
+    {% if user.is_superuser %}
+    <li>管理員</li>
+    {% endif %}
+</ul>
+
+{% endblock %}
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> -->
+<!-- <h1>Profile</h1> -->
+<!-- {% if user.is_authenticated %}
+    Login:{{user.username}}
+    <a href="{% url 'logout' %}">登出</a>
+    {% else %}
+    <a href="{% url 'login' %}">登入</a>
+    <a href="{% url 'register' %}">註冊</a>
+    {% endif %} -->
+<!-- </body>
+
+</html> -->

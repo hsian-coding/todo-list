@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+dj = "*"
+dj-database-url = "*"
+dj-static = "*"
+gunicorn = "*"
+psycopg2 = "*"
+pymysql = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"

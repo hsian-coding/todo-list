@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>View</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>建立日期:{{todo.created}}</p>
+    {{form.as_p}}
+    <input type="submit" name="update" value="更新"></button>
+    <input type="submit" name="delete" value="刪除"></button>
+
+</form>
+<p id="message">{{message}}</p>
+
+
+
+{% comment %} <h2>{{todo.title}}</h2> {% endcomment %}
+{% comment %} <ul> {% endcomment %}
+    {% comment %} <li>內容:{{todo.text}}</li> {% endcomment %}
+    {% comment %} <li>建立日期:{{todo.created}}</li> {% endcomment %}
+    {% comment %} <li>重要性:{{todo.important}}</li> {% endcomment %}
+    {% comment %} <li>完成:{{todo.completed}}</li> {% endcomment %}
+{% comment %} </ul>  {% endcomment %}
+{% endblock %}

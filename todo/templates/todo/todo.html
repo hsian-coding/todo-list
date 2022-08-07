@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Todo</h1>
+
+<ul>
+    {% for todo in todos %}
+    <li>
+        <a href="{% url 'view' todo.id %}">
+            {% if todo.completed %}
+            <s>{{todo.title}} {% if todo.important %}(重要) {% endif %}</s>
+            {% else %}
+            {{todo.title}} {% if todo.important %}(重要) {% endif %}
+            {% endif %}
+        </a>
+        &nbsp;
+        <a href="{% url 'delete' todo.id %}">刪除</a>
+        <a href="{% url 'completed' todo.id %}">完成</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
