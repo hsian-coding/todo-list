@@ -8,11 +8,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TodoList</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .button {
+            width: 120px;
+        }
+    </style>
 </head>
 
 <body>
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'todo' %}">
+                <img src="{% static 'images/brand.png' %}" alt="" width="30px">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            {% if user.is_authenticated %}
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'profile' %}">使用者: {{user.username|upper}}
+                </a>
+                <a class="navbar-item is-size-6 has-text-warning" href="{% url 'logout' %}">登出
+                </a>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{% url 'create' %}">
+                            建立TODO
+                        </a>
+                        <a class="button is-danger" href="{% url 'completed' %}">
+                            已完成TODO
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{% url 'register' %}">
+                            <strong>註冊</strong>
+                        </a>
+                        <a class="button is-warning" href="{% url 'login' %}">
+                            登入
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+
+
     <!-- <img src="{% static 'images/brand.png' %}" alt="" width="30px"> -->
-    <a href="{% url 'todo' %}"><img src="{% static 'images/brand.png' %}" alt="" width="30px"></a>
+    <!-- <a href="{% url 'todo' %}"><img src="{% static 'images/brand.png' %}" alt="" width="30px"></a>
     {% if user.is_authenticated %}
     Login:
     <a href="{% url 'profile' %}">{{user.username}}</a>
@@ -25,7 +82,7 @@
     {% endif %}
 
     {% block content %}
-    {% endblock %}
+    {% endblock %} -->
 </body>
 
 </html>
