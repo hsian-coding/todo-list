@@ -11,6 +11,7 @@ dj-static = "*"
 gunicorn = "*"
 psycopg2 = "*"
 pymysql = "*"
+whitenoise = "*"
 
 [dev-packages]
 autopep8 = "*"
