@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-8#ltceg%6*b9l7qqmaz_)c9#cxq0fz(+ybov$q%6-_ei)tsf!-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -173,5 +173,6 @@ LOGIN_URL = '/user/login'
 # ]
 
 # 公用static(發布用)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
