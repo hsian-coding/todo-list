@@ -1,7 +1,64 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>View</h1>
 
+<div class="columns is-centered has-text-centered">
+    <div class="column is-size-2 label">檢視代辦事項</div>
+</div>
+<div class="columns is-centered">
+    <div class="column is-6">
+        <form action="" method="POST" class="box has-text-centered">
+            {% csrf_token %}
+
+            <div class="field">
+                <label class="label is-size-4">標題</label>
+                <div class="control">
+                    <input type="text" class="input" name="title" id="id_title" value="{{todo.title}}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label is-size-4">內文</label>
+                <div class="control">
+                    <textarea name="text" class="textarea" id="id_text">{{todo.text}}</textarea>
+                </div>
+            </div>
+            <div class="field has-text-left">
+                <div class="control">
+                    {% if todo.important %}
+                    <input type="checkbox" name="important" id="id_important" checked>重要
+                    {% else %}
+                    <input type="checkbox" name="important" id="id_important">重要
+                    {% endif %}
+                    {% if todo.completed %}
+                    <input type="checkbox" name="completed" id="id_completed" checked>完成
+                    {% else %}
+                    <input type="checkbox" name="completed" id="id_completed">完成
+                    {% endif %}
+                </div>
+            </div>
+            <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                    <input type="submit" class="button is-warning" name="update" value="更新">
+                </p>
+                <p class="control">
+                    <input type="button" class="button is-danger" name="delete" value="刪除"
+                        onclick="confirmDialog('確定刪除代辦事項?')">
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+{% if message %}
+<div class="columns is-centered">
+    <div class="column is-4 is-size-4">
+        <div class="notification is-primary has-text-centered" id="message">
+            <button class="delete"></button>
+            {{message}}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- <h1>View</h1>
 <form action="" method="POST">
     {% csrf_token %}
     <p>建立日期:{{todo.created}}</p>
@@ -10,9 +67,7 @@
     <input type="submit" name="delete" value="刪除"></button>
 
 </form>
-<p id="message">{{message}}</p>
-
-
+<p id="message">{{message}}</p> -->
 
 {% comment %} <h2>{{todo.title}}</h2> {% endcomment %}
 {% comment %} <ul> {% endcomment %}
@@ -20,5 +75,39 @@
     {% comment %} <li>建立日期:{{todo.created}}</li> {% endcomment %}
     {% comment %} <li>重要性:{{todo.important}}</li> {% endcomment %}
     {% comment %} <li>完成:{{todo.completed}}</li> {% endcomment %}
-{% comment %} </ul>  {% endcomment %}
+    {% comment %} </ul> {% endcomment %}
+
+<script>
+    function confirmDialog(message) {
+        $('<div></div>').appendTo('body')
+            .html('<div><h6>' + message + '?</h6></div>')
+            .dialog({
+                modal: true,
+                title: '訊息',
+                zIndex: 10000,
+                autoOpen: true,
+                width: '500px',
+                resizable: false,
+                buttons: {
+                    Yes: function () {
+                        $.ajax({
+                            type: "GET",
+                            data: null,
+                            url: "{% url 'delete' todo.id %}"
+                        }).done(function (result) {
+                            location.href = "{% url 'todo' %}";
+                            alert("資料刪除成功!");
+                        })
+                        $(this).dialog("close");
+                    },
+                    No: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).remove();
+                }
+            });
+    };
+</script>
 {% endblock %}

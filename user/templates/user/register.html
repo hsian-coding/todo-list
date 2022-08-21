@@ -1,12 +1,77 @@
 {% extends 'base.html' %}{% block content %}
-<h1>Register</h1>
+
+<div class="columns is-centered has-text-centered">
+    <div class="column is-size-2">註冊帳號</div>
+</div>
+<div class="columns is-centered">
+    <div class="column is-6">
+        <form action="" method="POST" class="box has-text-centered">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label is-size-4" for="id_username">使用者名稱</label>
+                <div class="control">
+                    <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                </div>
+                <span class="helptext">必要的。150 個字或更少，只包含字母、數字和 @/./+/-/_。</span>
+            </div>
+            <div class="field">
+                <label class="label is-size-4" for="id_email">Email</label>
+                <div class="control">
+                    <input type="email" name="email" required="" id="id_email">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label is-size-4" for="id_password1">密碼</label>
+                <div class="control">
+                    <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                    <!-- <input type="email" name="email" required="" id="id_email"> -->
+                </div>
+                <span class="helptext">
+                    <ul>
+                        <li>你的密碼不能與其他個人資訊太相近。</li>
+                        <li>你的密碼必須包含至少 8 個字元。</li>
+                        <li>你不能使用常見的密碼。</li>
+                        <li>你的密碼不能完全是數字。</li>
+                    </ul>
+                </span>
+            </div>
+            <div class="field">
+                <label class="label is-size-4" for="id_password2">密碼確認</label>
+                <div class="control">
+                    <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                    <!-- <input type="email" name="email" required="" id="id_email"> -->
+                </div>
+                <span class="helptext">為檢查用，請輸入與前面相同的密碼。</span>
+            </div>
+            <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                    <input type="submit" class="button is-warning" value="註冊">
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+{% if message %}
+<div class="columns is-centered">
+    <div class="column is-4 is-size-4">
+        <div class="notification is-primary has-text-centered" id="message">
+            <button class="delete"></button>
+            {{message}}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+<!-- <h1>Register</h1>
 <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">註冊</button>
 </form>
 <p id="message">{{message}}</p>
-{% endblock %}
+{% endblock %} -->
 
 <!-- <!DOCTYPE html>
 <html lang="en">

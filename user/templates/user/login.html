@@ -1,20 +1,54 @@
 {% extends 'base.html' %}{% block content %}
-<h1>Login</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-    <label for="username">帳號</label>
-    <input type="text" name="username" id="username"><br>
-    <label for="password">密碼</label>
-    <input type="password" name="password" id="password"><br>
 
-    <p>
-        <input type="submit" name="login" value="登入">
-        <input type="submit" name="register" value="註冊">
-        <input type="reset" value="清除">
-    </p>
-    <p>{{message}}</p>
+<div class="columns is-centered has-text-centered">
+    <div class="column is-size-2">
+        登入
+    </div>
+</div>
+<div class="columns is-centered">
+    <div class="column is-6">
+        <form action="" method="POST" class="box has-text-centered">
+            {% csrf_token %}
 
-</form>
+            <div class="field">
+                <label class="label">帳號</label>
+                <div class="control">
+                    <input type="text" class="input" name="username" id="username"><br>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">密碼</label>
+                <div class="control">
+                    <input type="password" class="input" name="password" id="password"><br>
+                </div>
+            </div>
+
+            <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                    <input type="submit" class="button is-primary" name="login" value="登入">
+                </p>
+                <p class="control">
+                    <input type="submit" class="button is-warning" name="register" value="註冊">
+                </p>
+                <p class="control">
+                    <input type="reset" class="button is-danger" value="清除">
+                </p>
+
+            </div>
+        </form>
+    </div>
+</div>
+{% if message %}
+<div class="columns is-centered">
+    <div class="column is-4 is-size-4">
+        <div class="notification is-primary has-text-centered" id="message">
+            <button class="delete"></button>
+            {{message}}
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 <!-- <!DOCTYPE html>

@@ -1,6 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Completed</h1>
+
+<div class="columns is-centered has-text-centered">
+    <div class="column is-size-2 label">已完成的事項</div>
+</div>
+{% for todo in todos %}
+<div class="columns is-centered">
+    <div class="column is-6">
+        <div class="card">
+            <header class="card-header has-background-dark">
+                <p
+                    class="card-header-title is-size-4 has-text-white {% if todo.important %} has-text-danger {% endif %}">
+                    {% if todo.completed %}
+                    <s>
+                        {{todo.title}}
+                        {% if todo.important %}
+                        (重要)
+                        {% endif %}
+                    </s>
+                    <i class="fa fa-check has-text-primary" aria-hidden="true" style="margin-left: 12px;"></i>
+                    {% else %}
+                    {{todo.title}}
+                    {% if todo.important %}(重要)
+                    {% endif %}
+                    {% endif %}
+                </p>
+                <p class="card-header-icon has-text-white">
+                    ({{todo.date_completed}})
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    {{todo.text}}
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="{% url 'view' todo.id %}" class="card-footer-item has-text-info ">檢視</a>
+                <a href="{% url 'completed' todo.id %}" class="card-footer-item has-text-primary">完成</a>
+                <!-- <a href="{% url 'delete' todo.id %}" class="card-footer-item has-text-danger">刪除</a> -->
+            </footer>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<!-- <h1>Completed</h1>
 
 <ul>
     {% for todo in todos %}
@@ -11,6 +56,5 @@
         -({{todo.date_completed}})
     </li>
     {% endfor %}
-</ul>
-
+</ul> -->
 {% endblock %}

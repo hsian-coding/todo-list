@@ -1,15 +1,38 @@
 {% extends 'base.html' %}{% block content %}
-<h1>Profile</h1>
+{% load static %}
 
-<h2>{{user.username}}</h2>
-<ul>
-    <li>信箱: {{user.email}}</li>
-    <li>加入時間: {{user.date_joined}}</li>
-    <li>最後登入時間: {{user.last_login}}</li>
-    {% if user.is_superuser %}
-    <li>管理員</li>
-    {% endif %}
-</ul>
+<div class="columns is-centered has-text-centered">
+    <div class="column is-size-2 has-text-weight-bold">使用者資料</div>
+</div>
+<div class="columns is-centered">
+    <div class="column is-5">
+        <div class="card">
+            <header class="card-header has-background-dark">
+                <div class="card-image has-image-centered" style="padding: 30px 0 30px 0;">
+                    <figure class="image is-128x128 profile-figure-setting">
+                        <img src="{% static 'images/cat.png' %}" alt="Placeholder image">
+                    </figure>
+                </div>
+            </header>
+            <header class="has-background-dark has-text-centered">
+                <p class="is-size-2 has-text-white">{{user.username|upper}}</p>
+            </header>
+            <div class="card-content">
+                <div class="content has-text-weight-semibold is-size-5">
+                    <li>信箱: {{user.email}}</li>
+                    <li>加入時間: {{user.date_joined}}</li>
+                    <li>最後登入時間: {{user.last_login}}</li>
+                    {% if user.is_superuser %}
+                    <li>管理員</li>
+                    {% endif %}
+                </div>
+            </div>
+            <footer class="card-footer">
+
+            </footer>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

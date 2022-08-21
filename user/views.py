@@ -74,5 +74,5 @@ def user_register(request):
                     login(request, user)
                     return redirect('profile')
 
-        print(username, password1, password2)
+        # print(username, password1, password2)
     return render(request, './user/register.html', {'form': form, 'message': message})
