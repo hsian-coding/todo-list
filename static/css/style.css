@@ -11,15 +11,15 @@ input{
     margin-right: auto;
   }
 
-  .profile-figure-setting {
+.profile-figure-setting {
     padding: 8px;
     background: linear-gradient(130deg, #74b9ff, #e66767);
     border-radius: 50%;
     background-size: 200% 200%;
     animation: animated-gradient 2s linear infinite;
-  }
+}
 
-  @keyframes animated-gradient{
+@keyframes animated-gradient{
     25%{
       background-position: left bottom;
     }
@@ -32,4 +32,4 @@ input{
     100%{
       background-position: left top;
     }
-  }
+}
